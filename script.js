@@ -1,13 +1,7 @@
 function scrollAction(action) {
   console.log('Action: ' + action);
-  var iframe = document.getElementById('SiteIframe');
-  if (iframe) {
-    console.log('iframe');
-    iframe = iframe.contentWindow;
-  } else {
-    iframe = self;
-    console.log('self');
-  }
+  var iframe = document.getElementById('SiteIframe').contentWindow;
+
   switch (action) {
     case 1:
       window.parent.scrollTo(0, 0);
@@ -16,18 +10,10 @@ function scrollAction(action) {
       window.parent.scrollTo(0, window.parent.document.body.scrollHeight);
       break;
     case 3:
-      if (iframe) {
-        iframe.scrollTo(0, 0);
-      } else {
-        self.scrollTo(0, 0);
-      }
+      iframe.postMessage(window.document.scrollTo(0, 0));
       break;
     case 4:
-      if (iframe) {
-        iframe.scrollTo(0, iframe.document.body.scrollHeight);
-      } else {
-        self.scrollTo(0, self.document.body.scrollHeight);
-      }
+      iframe.postMessage(window.scrollTo(0, window.scrollHeight));
       break;
     default:
       console.error('An error occurred.');
