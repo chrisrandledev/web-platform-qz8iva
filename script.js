@@ -10,7 +10,8 @@ function scrollAction(action) {
       window.parent.scrollTo(0, window.parent.document.body.scrollHeight);
       break;
     case 3:
-      iframe.postMessage(window.parent.document.scrollTo(0, 0));
+      //iframe.postMessage(window.parent.scrollTo(0, 0));
+      iframe.postMessage('window.parent.scrollTo(0, 0)');
       break;
     case 4:
       iframe.postMessage(window.parent.scrollTo(0, window.scrollHeight));
